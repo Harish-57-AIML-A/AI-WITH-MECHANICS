@@ -97,3 +97,7 @@ print(f"Predicted Stress: {pred[0][0]:.2f} MPa")
 #    warnings.warn(
 #    1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 236ms/step
 #    Predicted Stress: 125.93 MPa*/
+#    /usr/local/lib/python3.12/dist-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but StandardScaler was fitted with feature names
+#    warnings.warn(
+#    1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 236ms/step
+#    Predicted Stress: 125.93 MPa
