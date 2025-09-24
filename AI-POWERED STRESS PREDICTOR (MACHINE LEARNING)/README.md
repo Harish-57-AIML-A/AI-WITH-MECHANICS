@@ -17,6 +17,7 @@
 3. 🔍 Input a new load condition → AI predicts **stress value or failure risk**.
 ---
 4. 🚦 Output gives a **safe/unsafe label** for quick design checks.
+---
 
 🚀 This **mini-project** showcases how **AI can complement mechanics** by providing **fast, approximate predictions** for stress analysis before performing detailed simulations. It reduces trial-and-error and helps engineers focus on optimized designs.
 
