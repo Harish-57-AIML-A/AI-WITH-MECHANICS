@@ -81,3 +81,19 @@ sample = np.array([[120, 40, 20, 500, 300]])  # (length, width, thickness, load,
 sample_scaled = scaler.transform(sample)
 pred = model.predict(sample_scaled)
 print(f"Predicted Stress: {pred[0][0]:.2f} MPa")
+
+
+#         length      width    thickness     load         material_strength   max_stress
+#    0  106.181018  26.661964  16.776756  705.432695         428.798351       164.471762
+#    1  192.607146  58.771085  16.114046  817.013257         522.172932       154.211045
+#    2  159.799091  88.565125  45.781456  325.421109         504.064372       10.764201
+#    3  139.798773  75.900240  16.229579  662.386690         261.559962       79.740831
+#    4   73.402796  82.590503  17.237738  614.571385         259.699788       34.374670
+
+#    /usr/local/lib/python3.12/dist-packages/keras/src/layers/core/dense.py:93: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+#    super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+#    Test MAE: 38.52 MPa
+#    /usr/local/lib/python3.12/dist-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but StandardScaler was fitted with feature names
+#    warnings.warn(
+#    1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 236ms/step
+#    Predicted Stress: 125.93 MPa*/
