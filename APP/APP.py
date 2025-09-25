@@ -1,72 +1,27 @@
-# utils.py
-"""
-Utility functions for Stress Prediction Project
-AI with Mechanics - Mini Project
-"""
+from flask import Flask, request, render_template
+import joblib
+import numpy as np
 
-import pandas as pd
+app = Flask(__name__)
+model = joblib.load("../src/stress_model.pkl")
 
-# ------------------------------
-# Load dataset
-# ------------------------------
-def load_data(filepath: str):
-    """
-    Loads dataset from CSV file.
+@app.route("/", methods=["GET", "POST"])
+def home():
+    if request.method == "POST":
+        load = float(request.form["load"])
+        area = float(request.form["area"])
+        strength = float(request.form["strength"])
+        prediction = model.predict([[load, area, strength]])[0]
+        result = "Safe" if prediction == 0 else "Unsafe"
+        return f"Prediction: {result}"
+    return '''
+        <form method="post">
+            Load: <input type="text" name="load"><br>
+            Area: <input type="text" name="area"><br>
+            Material Strength: <input type="text" name="strength"><br>
+            <input type="submit" value="Predict">
+        </form>
+    '''
 
-    Args:
-        filepath (str): Path to CSV file.
-
-    Returns:
-        DataFrame: Loaded dataset.
-    """
-    try:
-        data = pd.read_csv(filepath)
-        return data
-    except Exception as e:
-        print(f"Error loading data: {e}")
-        return None
-
-
-# ------------------------------
-# Calculate stress
-# ------------------------------
-def calculate_stress(load: float, area: float) -> float:
-    """
-    Calculates stress = load / area.
-
-    Args:
-        load (float): Applied force/load (N).
-        area (float): Cross-sectional area (mm^2).
-
-    Returns:
-        float: Stress value.
-    """
-    if area == 0:
-        raise ValueError("Area cannot be zero!")
-    return load / area
-
-
-# ------------------------------
-# Evaluate model performance
-# ------------------------------
-from sklearn.metrics import accuracy_score, classification_report
-
-def evaluate_model(model, X_test, y_test):
-    """
-    Evaluates model on test data.
-
-    Args:
-        model: Trained ML model.
-        X_test: Features of test dataset.
-        y_test: True labels.
-
-    Returns:
-        dict: Accuracy and classification report.
-    """
-    predictions = model.predict(X_test)
-    acc = accuracy_score(y_test, predictions)
-    report = classification_report(y_test, predictions, output_dict=True)
-    return {
-        "accuracy": acc,
-        "report": report
-    }
+if __name__ == "__main__":
+    app.run(debug=True)
