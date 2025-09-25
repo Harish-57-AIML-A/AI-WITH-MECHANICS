@@ -1,0 +1,5 @@
+Load,Area,Material_Strength,Stress,Status
+500,50,300,10,Safe
+1000,60,200,16.6,Unsafe
+800,40,250,20,Unsafe
+300,70,400,4.3,Safe
