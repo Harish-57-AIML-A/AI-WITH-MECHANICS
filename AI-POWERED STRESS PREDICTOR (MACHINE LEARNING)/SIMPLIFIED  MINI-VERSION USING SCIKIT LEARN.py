@@ -82,6 +82,7 @@ sample_scaled = scaler.transform(sample)
 pred = model.predict(sample_scaled)
 print(f"Predicted Stress: {pred[0][0]:.2f} MPa")
 
+# OUTPUT
 
 #         length      width    thickness     load         material_strength   max_stress
 #    0  106.181018  26.661964  16.776756  705.432695         428.798351       164.471762
